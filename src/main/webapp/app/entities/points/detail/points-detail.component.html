@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="points">
+      <h2 data-cy="pointsDetailsHeading"><span>Points</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ points.id }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ points.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Exercise</span></dt>
+        <dd>
+          <span>{{ points.exercise }}</span>
+        </dd>
+        <dt><span>Meals</span></dt>
+        <dd>
+          <span>{{ points.meals }}</span>
+        </dd>
+        <dt><span>Alcohol</span></dt>
+        <dd>
+          <span>{{ points.alcohol }}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+          <span>{{ points.notes }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ points.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/points', points.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

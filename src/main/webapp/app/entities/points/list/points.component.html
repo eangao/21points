@@ -1,0 +1,80 @@
+<div>
+  <h2 id="page-heading" data-cy="PointsHeading">
+    <span>Points</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-points"
+        [routerLink]="['/points/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Points </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="points?.length === 0">
+    <span>No points found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="points && points.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Date</span></th>
+          <th scope="col"><span>Exercise</span></th>
+          <th scope="col"><span>Meals</span></th>
+          <th scope="col"><span>Alcohol</span></th>
+          <th scope="col"><span>Notes</span></th>
+          <th scope="col"><span>User</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let points of points; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/points', points.id, 'view']">{{ points.id }}</a>
+          </td>
+          <td>{{ points.date | formatMediumDate }}</td>
+          <td>{{ points.exercise }}</td>
+          <td>{{ points.meals }}</td>
+          <td>{{ points.alcohol }}</td>
+          <td>{{ points.notes }}</td>
+          <td>
+            {{ points.user?.id }}
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/points', points.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/points', points.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(points)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

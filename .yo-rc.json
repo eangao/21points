@@ -41,6 +41,8 @@
     "jwtSecretKey": "NTIyNTUzMDdlYmNjNDFjYWUwZDdlZDk0ZDczNGViOTA0ODZmOTBhOGJlOTA2YzVkZGYyNGNkYmZiYzFjN2U1MTE4MzNhMmY1ZDIwMDNkMDNjNmQxODlkYmZhMGI3MzllMmY5ODE3YTIzN2NjZjc1YWM2MmFkODg2MTUyYTQwYTk=",
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": ["Weight", "Points", "BloodPressure", "Preferences"],
+    "lastLiquibaseTimestamp": 1624272685000
   }
 }

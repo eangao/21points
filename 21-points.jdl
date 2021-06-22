@@ -1,0 +1,45 @@
+entity Weight {
+	dateTime LocalDate required,
+    weight Integer
+}
+
+relationship ManyToOne {
+	Weight to User	
+}
+
+entity Points {
+	date LocalDate required,
+    exercise Integer,
+    meals Integer,
+    alcohol Integer,
+    notes String maxlength(140)
+}
+
+relationship ManyToOne {
+	Points to User
+}
+
+entity BloodPressure {
+	date LocalDate required,
+    systolic Integer,
+    diastolic Integer
+}
+
+relationship ManyToOne {
+	BloodPressure to User
+}
+
+entity Preferences {
+	weeklyGoal Integer required min(10) max(21),
+    weightUnits Units required
+}
+
+enum Units {
+	KILOGRAM,
+    POUND
+}
+
+relationship OneToOne {
+	Preferences to User
+}
+

@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="BloodPressureHeading">
+    <span>Blood Pressures</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-blood-pressure"
+        [routerLink]="['/blood-pressure/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Blood Pressure </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bloodPressures?.length === 0">
+    <span>No bloodPressures found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="bloodPressures && bloodPressures.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Date</span></th>
+          <th scope="col"><span>Systolic</span></th>
+          <th scope="col"><span>Diastolic</span></th>
+          <th scope="col"><span>User</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bloodPressure of bloodPressures; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/blood-pressure', bloodPressure.id, 'view']">{{ bloodPressure.id }}</a>
+          </td>
+          <td>{{ bloodPressure.date | formatMediumDate }}</td>
+          <td>{{ bloodPressure.systolic }}</td>
+          <td>{{ bloodPressure.diastolic }}</td>
+          <td>
+            {{ bloodPressure.user?.id }}
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/blood-pressure', bloodPressure.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/blood-pressure', bloodPressure.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(bloodPressure)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

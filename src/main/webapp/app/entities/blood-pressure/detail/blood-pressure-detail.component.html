@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bloodPressure">
+      <h2 data-cy="bloodPressureDetailsHeading"><span>Blood Pressure</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ bloodPressure.id }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ bloodPressure.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Systolic</span></dt>
+        <dd>
+          <span>{{ bloodPressure.systolic }}</span>
+        </dd>
+        <dt><span>Diastolic</span></dt>
+        <dd>
+          <span>{{ bloodPressure.diastolic }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ bloodPressure.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/blood-pressure', bloodPressure.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

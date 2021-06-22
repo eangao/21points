@@ -1,0 +1,36 @@
+{
+  "name": "BloodPressure",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "systolic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "diastolic",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "bloodPressure",
+      "relationshipName": "user"
+    }
+  ],
+  "entityTableName": "blood_pressure",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210621105124"
+}

@@ -48,6 +48,10 @@ public class CacheConfiguration {
             createCache(cm, com.appsdeveloper.domain.User.class.getName());
             createCache(cm, com.appsdeveloper.domain.Authority.class.getName());
             createCache(cm, com.appsdeveloper.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.appsdeveloper.domain.Weight.class.getName());
+            createCache(cm, com.appsdeveloper.domain.Points.class.getName());
+            createCache(cm, com.appsdeveloper.domain.BloodPressure.class.getName());
+            createCache(cm, com.appsdeveloper.domain.Preferences.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
